@@ -1,0 +1,29 @@
+01  WS-AREA. 
+    05  WS-DATE PIC 9(8).
+    05  WS-TIME PIC 9(6).
+    05  WS-DATE-COMP USAGE COMP-X.
+    05  WS-TIME-COMP USAGE COMP-X.
+
+PROCEDURE DIVISION.
+    DISPLAY "Enter date (YYYYMMDD): ".
+    ACCEPT WS-DATE.
+    DISPLAY "Enter time (HHMMSS): ".
+    ACCEPT WS-TIME.
+
+    MOVE WS-DATE TO WS-DATE-COMP
+    MOVE WS-TIME TO WS-TIME-COMP
+
+    IF WS-DATE-COMP > FUNCTION NUMVAL(20231231) THEN
+        DISPLAY "Invalid date" 
+        GO TO end-program.
+    END-IF.
+
+    IF WS-TIME-COMP > FUNCTION NUMVAL(235959) THEN
+        DISPLAY "Invalid time"
+        GO TO end-program.
+    END-IF.
+
+    DISPLAY "Date: " WS-DATE
+    DISPLAY "Time: " WS-TIME
+
+end-program. STOP RUN.
